@@ -6,3 +6,4 @@ ruby File.read(File.join(File.dirname(__FILE__), '.ruby-version')).strip
 gem 'aws-sdk-dynamodb'
 gem 'rpi_gpio'
 gem 'rspec'
+gem 'dotenv'

@@ -1,5 +1,6 @@
 require 'rpi_gpio'
 require 'aws-sdk-dynamodb'
+require 'dotenv/load'
 
 class Door
   class << self
