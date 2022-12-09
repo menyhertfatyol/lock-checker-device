@@ -8,11 +8,11 @@ class Door
       RPi::GPIO.set_numbering :board
       RPi::GPIO.setup pin_num, as: :input, pull: :up
 
-      if RPi::GPIO.high? pin_num
-        state = 'open'
-      else
-        state = 'locked'
-      end
+      state = if RPi::GPIO.high? pin_num
+                'open'
+              else
+                'locked'
+              end
 
       store_state(state)
     ensure
@@ -24,14 +24,15 @@ class Door
     def store_state(state)
       dynamodb.put_item({
                           item: { 'door' => 'front_door',
-                                  'lock_state' => "#{state}",
-                                  'updated_at' => "#{Time.now}" },
+                                  'lock_state' => state,
+                                  'updated_at' => Time.now.to_s },
                           table_name: 'door_lock'
                         })
     end
 
     def dynamodb
-      Aws::DynamoDB::Client.new region: 'eu-central-1', access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      Aws::DynamoDB::Client.new region: 'eu-central-1',
+                                access_key_id: ENV['AWS_ACCESS_KEY_ID'],
                                 secret_access_key: ENV['AWS_ACCESS_KEY']
     end
   end
