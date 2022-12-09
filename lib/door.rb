@@ -1,9 +1,10 @@
 require 'rpi_gpio'
-require 'aws-sdk-dynamodb'
-require 'dotenv/load'
+require 'lib/status_storage'
 
 class Door
   class << self
+    include StatusStorage
+
     def check_lock_state(pin_num: 11)
       RPi::GPIO.set_numbering :board
       RPi::GPIO.setup pin_num, as: :input, pull: :up
@@ -17,23 +18,6 @@ class Door
       store_state(state)
     ensure
       RPi::GPIO.clean_up
-    end
-
-    private
-
-    def store_state(state)
-      dynamodb.put_item({
-                          item: { 'door' => 'front_door',
-                                  'lock_state' => state,
-                                  'updated_at' => Time.now.to_s },
-                          table_name: 'door_lock'
-                        })
-    end
-
-    def dynamodb
-      Aws::DynamoDB::Client.new region: 'eu-central-1',
-                                access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-                                secret_access_key: ENV['AWS_ACCESS_KEY']
     end
   end
 end
