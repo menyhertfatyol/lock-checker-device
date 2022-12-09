@@ -34,7 +34,7 @@ GEM
     rspec-support (3.12.0)
 
 PLATFORMS
-  armv6l-linux-eabihf
+  ruby
 
 DEPENDENCIES
   aws-sdk-dynamodb
