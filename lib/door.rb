@@ -1,5 +1,5 @@
 require 'rpi_gpio'
-require 'lib/status_storage'
+require 'status_storage'
 
 class Door
   class << self
