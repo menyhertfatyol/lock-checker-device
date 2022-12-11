@@ -1,14 +1,22 @@
+GIT
+  remote: https://github.com/synthead/rpi_gpio.git
+  revision: 5be5c6d6314a83feefcd3d2e989d17dbc4291c00
+  branch: use-externs-in-common.h
+  specs:
+    rpi_gpio (0.5.0)
+      epoll (~> 0.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
     aws-eventstream (1.2.0)
-    aws-partitions (1.670.0)
-    aws-sdk-core (3.168.2)
+    aws-partitions (1.674.0)
+    aws-sdk-core (3.168.4)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.651.0)
       aws-sigv4 (~> 1.5)
       jmespath (~> 1, >= 1.6.1)
-    aws-sdk-dynamodb (1.79.0)
+    aws-sdk-dynamodb (1.80.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.5.2)
@@ -17,8 +25,6 @@ GEM
     dotenv (2.8.1)
     epoll (0.3.0)
     jmespath (1.6.2)
-    rpi_gpio (0.5.0)
-      epoll (~> 0.3)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
@@ -39,11 +45,11 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk-dynamodb
   dotenv
-  rpi_gpio
+  rpi_gpio!
   rspec
 
 RUBY VERSION
    ruby 2.7.3p183
 
 BUNDLED WITH
-   2.2.18
+   2.1.4
