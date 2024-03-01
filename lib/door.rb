@@ -1,5 +1,5 @@
 require 'rpi_gpio'
-require_relative './status_storage.rb'
+require_relative './status_storage'
 
 class Door
   class << self
