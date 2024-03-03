@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/synthead/rpi_gpio.git
-  revision: 5be5c6d6314a83feefcd3d2e989d17dbc4291c00
-  branch: use-externs-in-common.h
-  specs:
-    rpi_gpio (0.5.0)
-      epoll (~> 0.3)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -24,10 +16,12 @@ GEM
     base64 (0.2.0)
     bigdecimal (3.1.6)
     diff-lcs (1.5.1)
-    dotenv (3.1.0)
+    dotenv (2.8.1)
     epoll (0.3.0)
     jmespath (1.6.2)
     ox (2.14.17)
+    rpi_gpio (0.5.0)
+      epoll (~> 0.3)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -51,11 +45,11 @@ DEPENDENCIES
   bigdecimal
   dotenv
   ox
-  rpi_gpio!
+  rpi_gpio
   rspec
 
 RUBY VERSION
-   ruby 3.3.0p0
+   ruby 2.7.8p225
 
 BUNDLED WITH
    2.5.6
