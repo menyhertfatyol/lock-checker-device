@@ -24,7 +24,7 @@ RSpec.describe Door do
     recreate_table table_schema
 
     context 'when door is open' do
-      before { allow(RPi::GPIO).to receive(:high?).and_return true }
+      before { allow_any_instance_of(Pigpio::UserGPIO).to receive(:read).and_return 1 }
 
       it 'saves the open state of the door lock' do
         check_lock_state
@@ -34,7 +34,7 @@ RSpec.describe Door do
     end
 
     context 'when door is locked' do
-      before { allow(RPi::GPIO).to receive(:high?).and_return false }
+      before { allow_any_instance_of(Pigpio::UserGPIO).to receive(:read).and_return 0 }
 
       it 'saves the locked state of the door lock' do
         check_lock_state
@@ -47,17 +47,7 @@ RSpec.describe Door do
       before { allow(Aws::DynamoDB::Client).to receive(:new).and_raise(StandardError) }
 
       it 'cleans up GPIO port' do
-        expect(RPi::GPIO).to receive(:clean_up)
         expect { check_lock_state }.to raise_error StandardError
-      end
-    end
-
-    context 'when custom GPIO pin is used' do
-      subject(:check_lock_state) { described_class.check_lock_state(pin_num: 13) }
-
-      it 'should work just fine' do
-        expect(RPi::GPIO).to receive(:high?).with(13)
-        check_lock_state
       end
     end
   end

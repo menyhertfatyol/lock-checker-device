@@ -17,11 +17,9 @@ GEM
     bigdecimal (3.1.6)
     diff-lcs (1.5.1)
     dotenv (2.8.1)
-    epoll (0.3.0)
     jmespath (1.6.2)
     ox (2.14.17)
-    rpi_gpio (0.5.0)
-      epoll (~> 0.3)
+    pigpio (0.1.12)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -45,11 +43,11 @@ DEPENDENCIES
   bigdecimal
   dotenv
   ox
-  rpi_gpio
+  pigpio
   rspec
 
 RUBY VERSION
-   ruby 2.7.8p225
+   ruby 3.3.0p0
 
 BUNDLED WITH
    2.5.6

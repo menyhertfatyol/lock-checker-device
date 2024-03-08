@@ -1,23 +1,26 @@
-require 'rpi_gpio'
+require 'pigpio'
 require_relative './status_storage'
 
 class Door
   class << self
+    include Pigpio::Constant
     include StatusStorage
 
-    def check_lock_state(pin_num: 11)
-      RPi::GPIO.set_numbering :board
-      RPi::GPIO.setup pin_num, as: :input, pull: :up
+    def check_lock_state(broadcom_pin_num: 17)
+      pi = Pigpio.new
+      exit(-1) unless pi.connect
 
-      state = if RPi::GPIO.high? pin_num
+      lock = pi.gpio(broadcom_pin_num)
+      lock.pud = PI_PUD_UP
+      lock.mode = PI_INPUT
+
+      state = if lock.read == 1
                 'open'
               else
                 'locked'
               end
 
       store_state(state)
-    ensure
-      RPi::GPIO.clean_up
     end
   end
 end
