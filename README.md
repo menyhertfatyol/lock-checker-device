@@ -2,7 +2,7 @@
 
 # README
 
-Build a device that will check whether your door is locked, using a Raspberry PI, a hall effect sensor and a small but strong (preferably neodymium) magnet. It will store the results in a cloud database of your choice (this specific one uses AWS DynamoDB ). The results can be displayed by a separate web application using the same database. You can find an example for the web application [here](https://github.com/menyhertfatyol/my-door-lock).
+Build a device that will check whether your door is locked, using a Raspberry PI, a hall effect sensor and a small but strong (preferably neodymium) magnet. It will store the results in a cloud database of your choice (this specific one uses AWS DynamoDB ). The results can be displayed by a separate web application using the same database. You can find an example for the web application [here](https://github.com/menyhertfatyol/my-front-door).
 ## Prerequisites
 
 To set up your development environment, you'll need to following:
@@ -19,6 +19,8 @@ Install the necessary gems:
 ```bash
 bundle install
 ```
+
+By default this script will use the broadcom number 17 pin as the input pin.
 
 ## Running the tests
 *The build will only run on a Raspberry PI!*
